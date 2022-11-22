@@ -27,10 +27,7 @@ public class UserDaoHibernate implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        User user = entityManager.find(User.class, id);
-        if (user != null) {
-            entityManager.remove(getUserById(id));
-        }
+        entityManager.remove(getUserById(id));
     }
 
     @Override
