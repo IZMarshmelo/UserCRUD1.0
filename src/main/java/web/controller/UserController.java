@@ -4,7 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import web.model.User;
 import web.service.UserService;
 
@@ -28,13 +35,13 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("users/{id}")
+    @GetMapping("/users/{id}")
     public String getUser(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "user";
     }
 
-    @GetMapping("newUser")
+    @GetMapping("/newUser")
     public String saveUser(User user) {
         return "adduser";
     }
@@ -43,31 +50,31 @@ public class UserController {
     public String add(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "adduser";
-        } else {
-            userService.updateUser(user);
-            return "redirect:/users";
         }
+        userService.saveUser(user);
+        return "redirect:/";
     }
+
 
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.removeUserById(id);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
-    @GetMapping("/updateUser/{id}/update")
+    @GetMapping("/updateUser/{id}/")
     public String updateUser(@PathVariable("id") long id, Model model) {
         model.addAttribute(userService.getUserById(id));
         return "update";
     }
 
-    @PatchMapping("/updateUser/{id}")
-    public String update(@ModelAttribute("user") @Valid User updateUser, BindingResult bindingResult) {
+    @PatchMapping("/updateUser")
+    public String update(@Valid User updateUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "update";
-        } else {
-            userService.updateUser(updateUser);
-            return "redirect:/users";
         }
+        userService.updateUser(updateUser);
+        return "redirect:/";
     }
 }
+

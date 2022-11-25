@@ -6,6 +6,7 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 import java.util.List;
 
 @Component
@@ -18,10 +19,11 @@ public class UserDaoHibernate implements UserDao {
     @Override
     public void saveUser(User user) {
         entityManager.persist(user);
+        entityManager.close();
     }
 
     @Override
-    public void updateUser(User updateUser) {
+    public void updateUser(@Valid User updateUser) {
         entityManager.merge(updateUser);
     }
 

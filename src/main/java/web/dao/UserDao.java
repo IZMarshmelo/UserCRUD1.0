@@ -2,18 +2,19 @@ package web.dao;
 
 import web.model.User;
 
+import javax.validation.Valid;
 import java.util.List;
 
 public interface UserDao {
 
-    public void saveUser(User user);
+    void saveUser(User user);
 
-    public void updateUser(User updateUser);
+    void updateUser(@Valid User updateUser);
 
-    public void removeUserById(long id);
+    void removeUserById(long id);
 
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
-    public User getUserById(long id);
+    User getUserById(long id);
 
 }

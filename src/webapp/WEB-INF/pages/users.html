@@ -20,7 +20,7 @@
             background: #fd3434;
             color: white;
         }
-        .buttonEdit {
+        .buttonUpdate {
             background: gold;
             position: relative;
             left: 50%;
@@ -38,20 +38,19 @@
         <th th:width="50">UserId</th>
         <th th:width="120">Name</th>
         <th th:width="120">Surname</th>
-        <th th:width="50">Age</th>
         <th th:width="150">Email</th>
-        <th th:width="50">Edit</th>
+        <th th:width="50">Update</th>
         <th th:width="50">Delete</th>
     </tr>
     <tr th:each="users : ${users}">
 
-        <td><a th:href="@{'/' + ${users.id}}" th:utext="${users.id}">id</a></td>
+        <td><a th:href="@{'users/' + ${users.id}}" th:utext="${users.id}">id</a></td>
         <td th:utext="${users.name}">Name</td>
         <td th:utext="${users.lastName}">Lastname</td>
         <td th:utext="${users.email}">Email</td>
         <td>
-            <form th:action="@{'edit/' + ${users.id}}">
-                <input type="submit" class="buttonEdit" value="Edit"/>
+            <form action="#" th:action="@{'updateUser/' + ${users.id}}">
+                <input type="submit" class="buttonUpdate" value="Update"/>
             </form>
         </td>
         <td>

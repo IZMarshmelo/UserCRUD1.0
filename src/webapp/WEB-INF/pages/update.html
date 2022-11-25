@@ -45,21 +45,17 @@
         <input type="text" th:field="*{name}" id="name" required/>
         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
       </td>
-    </tr>
       <td>
         <label for="lastName">Enter lastName</label>
         <input type="text" th:field="*{lastName}" id="lastName"/>
         <div th:if="${#fields.hasErrors('surname')}" th:errors="*{lastName}">lastName error</div>
       </td>
-    </tr>
-    <tr>
       <td>
         <label for="email">Enter email</label>
         <input type="text" th:field="*{email}" id="email" required/>
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
       </td>
     </tr>
-    <br>
     <tr>
       <td>
         <input type="submit" class="buttonEdit" value="Update user"/>
