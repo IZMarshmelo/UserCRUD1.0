@@ -17,17 +17,20 @@ public class UserDaoHibernate implements UserDao {
     private EntityManager entityManager;
 
     @Override
+    @Transactional
     public void saveUser(User user) {
         entityManager.persist(user);
         entityManager.close();
     }
 
     @Override
+    @Transactional
     public void updateUser(@Valid User updateUser) {
         entityManager.merge(updateUser);
     }
 
     @Override
+    @Transactional
     public void removeUserById(long id) {
         entityManager.remove(getUserById(id));
     }
