@@ -1,7 +1,6 @@
 package web.dao;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Component
-@Transactional
 public class UserDaoHibernate implements UserDao {
 
     @PersistenceContext
